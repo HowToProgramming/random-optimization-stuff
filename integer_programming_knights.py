@@ -6,7 +6,7 @@ x = int(input("Enter Position X :"))
 y = int(input("Enter Position Y :"))
 
 """
-minimize A+B+C+D
+minimize A + B + C + D + E + F + G + H
 
 Subject to
 
