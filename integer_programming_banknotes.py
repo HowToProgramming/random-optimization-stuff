@@ -5,7 +5,7 @@ import numpy as np
 money = int(input("Enter Money : "))
 # Minimize Coin Count
 c = matrix([1] * 9, tc='d')
-# Subject to
+# Subject to Ax = b
 banktypes = [1, 2, 5, 10, 20, 50, 100, 500, 1000]
 A = matrix([banktypes], tc='d')
 b = matrix([money], tc='d')

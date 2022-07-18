@@ -3,6 +3,7 @@
 ## Project List
 
 - [ATM Problem with Integer Linear Programming](#atm-problem-with-integer-linear-programming)
+- [Minimize the Knight Moves in Chess using Integer Linear Programming](#minimize-the-knight-moves-in-chess-using-integer-linear-programming)
 
 ## ATM Problem with Integer Linear Programming
 
@@ -39,9 +40,44 @@ for cnt, typ in zip(bankcount, banktypes):
 
 In an overcomplicated approach, we can also write a problem as
 
-- ### Minimize **[1,1,1,1,1,1,1,1,1] * bankcount**
-- ### Subject to
+- Minimize **[1,1,1,1,1,1,1,1,1] * bankcount**
+- Subject to
     - **[1,2,5,10,20,50,100,500,1000] * bankcount = m**
     - **bankcount_i >= 0** for all bankcount_i in bankcount
 
 Which is **Integer Linear Programming** problem which we solve it using `cvxopt` package in python.
+
+## Minimize the Knight Moves in Chess using Integer Linear Programming
+
+Knight is a piece in chess which has the weirdest movement system, people say they move like an **L**, whether it is a **fat L** or **thin L**. We can distinguish the variations of knight moves to be
+
+- Move to the upper-right : (x, y) -> (x + 2, y + 1)
+- Move to the lower-right : (x, y) -> (x + 2, y - 1)
+- Move to the upper-left : (x, y) -> (x - 2, y + 1)
+- Move to the lower-left : (x, y) -> (x - 2, y - 1)
+
+In this problem, we try to minimize the knight moves from (0, 0) to the given position (x, y). Which can be written as a following constrained optimization problem:
+
+Minimize
+
+$$
+A + B + C + D + E + F + G + H
+$$
+
+Subject to
+
+$$
+A, B, C, D, E, F, G, H >= 0
+$$
+
+$$
+2 (A - B + E - F) + (C - D + G - H) = x
+$$
+
+$$
+(A - B - E + F) + 2 (C - D - G + H) = y
+$$
+
+which $A, B, C, D, E, F, G, H \in \mathbb{N} \cup \{0\}$
+
+We can use **Integer Linear Programming** to solve this following problem.
